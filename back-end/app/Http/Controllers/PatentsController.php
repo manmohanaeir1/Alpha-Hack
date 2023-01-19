@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Patents;
+use Illuminate\Support\Facades\DB;
 
 class PatentsController extends Controller
 {
@@ -14,6 +16,8 @@ class PatentsController extends Controller
     public function index()
     {
         //
+  
+
     }
 
     /**
@@ -24,6 +28,7 @@ class PatentsController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -32,9 +37,23 @@ class PatentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         //
+        $pat= new Patents;
+        $pat->name=$req->name;
+        $pat->description=$req->description;
+        $pat->status=$req->status;
+        $pat->number=$req->number;
+        $result=$pat->save();
+        if($result)
+        {
+         return   ["results:data saved"];
+        }
+        else{
+           return ["results:data not found"];
+
+        }
     }
 
     /**
@@ -43,9 +62,12 @@ class PatentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id=null)
     {
         //
+     return Patents::all();
+   
+//   return DB::table('patents')->get();
     }
 
     /**
