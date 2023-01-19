@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    //using axios to post data to the server
+    axios.post("http://localhost:5000/api/user/register", data).then((res) => {
+      console.log(res.data);
+    });
+  };
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='form-control'>
+          <label> Name</label>
+          <input type='text' name='name' id='name' {...register("name")} />
+          <label>Email</label>
+          <input type='text' name='email' {...register("email")} />
+        </div>
+        <div className='form-control'>
+          <label>Phone</label>
+          <input type='Number' name='phone' {...register("phone")} />
+        </div>
+        <div className='form-control'>
+          <label>Password</label>
+          <input type='password' name='password' {...register("password")} />
+        </div>
+        <div className='form-control'>
+          <label></label>
+          <button type='submit'>Login</button>
+        </div>
+      </form>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
