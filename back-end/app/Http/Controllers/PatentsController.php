@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class PatentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,11 +12,8 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        // return view('welcome');
-        return view('index'); 
-
-        
+    {
+        //
     }
 
     /**
@@ -60,7 +57,6 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
-        return view('welcome');
     }
 
     /**
