@@ -13,7 +13,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $table = 'profile';
     }
 
     /**
@@ -57,6 +57,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
+        return view('welcome');
     }
 
     /**
