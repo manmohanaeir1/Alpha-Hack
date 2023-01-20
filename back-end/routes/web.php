@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Contollers\ProfileController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +13,7 @@ use App\Http\Contollers\ProfileController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/wlc', function () {
     return view('welcome');
 });
-Route::get('/',[ProfileController::class,'edit']);
+Route::get('/',[ProfileController::class,'index']);

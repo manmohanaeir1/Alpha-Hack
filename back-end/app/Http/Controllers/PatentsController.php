@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Patents;
+use Illuminate\Support\Facades\DB;
 
-class ProfileController extends Controller
+class PatentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,11 +14,10 @@ class ProfileController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        // return view('welcome');
-        return view('index'); 
+    {
+        //
+  
 
-        
     }
 
     /**
@@ -27,6 +28,7 @@ class ProfileController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -35,9 +37,23 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         //
+        $pat= new Patents;
+        $pat->name=$req->name;
+        $pat->description=$req->description;
+        $pat->status=$req->status;
+        $pat->number=$req->number;
+        $result=$pat->save();
+        if($result)
+        {
+         return   ["results:data saved"];
+        }
+        else{
+           return ["results:data not found"];
+
+        }
     }
 
     /**
@@ -46,9 +62,12 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id=null)
     {
         //
+     return Patents::all();
+   
+//   return DB::table('patents')->get();
     }
 
     /**
@@ -60,7 +79,6 @@ class ProfileController extends Controller
     public function edit($id)
     {
         //
-        return view('welcome');
     }
 
     /**
